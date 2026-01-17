@@ -1,6 +1,6 @@
 import json
 
-def groupByDate():
+def groupByDate(date):
     with open('connections.json', 'r') as file:
         data = json.load(file)
 
@@ -17,7 +17,6 @@ def groupByDate():
         else:
             return 'th'
         
-
     def getMonth(month):
         months = ['January', 'February', 'March', 'April','May','June','July','August','September', 'October', 'November','December']
         return months[month-1]
@@ -27,19 +26,27 @@ def groupByDate():
     date_list = []
     for x in data:
         ident = x['id']
-        date = x['date'].split('-')
+        if date == x['date']:
+            dateNew = x['date'].split('-')
+            ans = x['answers']
+            day = int(dateNew[2])
+            year = int(dateNew[0])
+            month = getMonth(int(dateNew[1]))
+            suf = suffix(day)
+            title = f'Connections #{ident} - {month} {day}{suf}, {year}'
+            output = {
+                'id': ident,
+                'date': date,
+                'title': title,
+                'answers': ans
+            }
+            return output
+        
+        
 
-        month = getMonth(int(date[1]))
-        day = int(date[2])
-        year = int(date[0])
-        suf = suffix(day)
-        ans = x['answers']
-        date = f'Connections #{ident} - {month} {day}{suf}, {year}'
-        date_list.append(date)
-
-        connections_dict[date] = ans
-    print(connections_dict)
-    return connections_dict
+        
+    return None;
+    
 
         
         

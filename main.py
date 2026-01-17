@@ -6,5 +6,6 @@ app = FastAPI()
 @app.get("/data")
 
 def get_data():
-    result = groupByDate()
+    date = '2023-06-12'
+    result = groupByDate(date)
     return result
