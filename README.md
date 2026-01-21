@@ -1,4 +1,7 @@
 To-do: 
-1. change group to accept date as a parameter, then modify flask app accordingly
-2. begin to work on UI
+1. fix formatting for page
 
+
+To Run:
+1. in backend folder: uvicorn main:app --reload
+2. in connections folder: npm run dev -- --open
